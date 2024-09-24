@@ -1,39 +1,31 @@
-#include <iostream>
-#include <string>
 #include "modAlphaCipher.h"
 
-bool isValid(const int k, string &text) {
-    int razm=text.size();
-    if (k>razm)
-        return false;
-    return true;
-}
-
-int main() {
-    string text;
-    int key;
-    unsigned vibor;
-    cout << "Введите текcт: ";
-    cin >> text;
-    cout << "Введите кол-во столбцов: ";
-    cin >> key;
-    if (!isValid(key, text)) {
-        cout << "Ключ не корректен\n";
-        return 1;
+#include <iostream>
+#include <string>
+using namespace std;
+int main(int argc, char** argv)
+{
+    int a;
+    int b = 0;
+    string s;
+    cout << "\t\t\t\t-----MENU-----" << endl;
+    cout << "\t\tПРОГРАММА ДЛЯ ШИФРОВАНИЯ МЕТОДОМ МАРШРУТНОЙ КАРТЫ" << endl;
+    cout << "Введите ключ: ";
+    cin >> a;
+    cout << endl;
+    modRoutingCipher c{ a };
+    cout << "1) Зашифровать сообщение" << endl;
+    cout << "2) Дешифровать сообщение" << endl;
+    cin >> b;
+    cout << "Введите сообщение: " << endl;
+    cin >> s;
+    if(b == 1) {
+        string s1 = c.encrypt(s);
+        cout << "Зашифрованное сообщение: " << s1 << endl;
     }
-    cout<<"Ключ загружен\n";
-    modShifr shifr(key);
-    do {
-        cout << "Шифратор готов. Выберите опрецию (Выход-0, Шифрока-1, Расшифровка-2): ";
-        cin >> vibor;
-        if (vibor > 2) {
-            cout << "Неверная операция!\n" << endl;
-        } else if (vibor > 0) {
-            if (vibor == 1)
-                cout << shifr.encrypt(text) << endl;
-            else
-                cout << shifr.decrypt(text) << endl;
-        }
-    } while (vibor != 0);
+    if(b == 2) {
+        string s2 = c.decrypt(s);
+        cout << "Дешифрованное сообщение: " << s2 << endl;
+    }
     return 0;
 }

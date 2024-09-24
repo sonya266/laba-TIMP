@@ -1,16 +1,14 @@
 #pragma once
-#include <vector>
 #include <string>
-#include <map>
-
 using namespace std;
+class modRoutingCipher
+{
+public:
+    modRoutingCipher(const int& skey);
+    string encrypt(const string& open_text);
+    string decrypt(const string& cipher_text);
+    modRoutingCipher() = delete;
 
-class modShifr {
-    private:
-        int key;
-    public:
-        modShifr()=delete;
-        modShifr(int skey);
-        string encrypt(string &text);
-        string decrypt(string &text);
+private:
+    int key;
 };
